@@ -44,7 +44,7 @@ static long ft_atol(const char *str)
 
 int		ft_init_world(int ac, char **av, t_world *world)
 {
-	//printf("----1\n");	
+	printf("----1\n");	
 	if (ac != 5 && ac != 6)
 		return (1);
 	world->philo_num = ft_atol(av[1]);
@@ -62,7 +62,7 @@ int		ft_init_world(int ac, char **av, t_world *world)
 	world->s_end = sem_open("/end", O_CREAT, 0644, 1);
 	world->s_write = sem_open("/write", O_CREAT, 0644, 1);
 	world->start = ft_gettime(MILI);
-	//printf("----2\n");
+	printf("----2\n");
 	return (0);
 
 }

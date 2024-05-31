@@ -81,6 +81,7 @@ void ft_init_philo(t_world *world, int i)
 	philo->pid = ft_myfork();
 	if (philo->pid == 0)
 	{
+		printf("----3\n");
 		philo->id = i + 1;
 		philo->full = false;
 		philo->meals = 0;
