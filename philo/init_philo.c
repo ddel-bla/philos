@@ -17,15 +17,12 @@ void	ft_init_philos(t_world *world)
 	int			i;
 	t_philo		*philo;
 
-	if (world->nbr_limit_meals == 0)
-		ft_error("Check number of meals please.");
 	i = -1;
 	while (++i < world->philo_num)
 	{
 		philo = world->philos + i;
 		philo->id = i + 1;
-		philo->full = false;
-		philo->meals = 0;
+		philo->meals = world->nbr_limit_meals;
 		pthread_mutex_init(&philo->mtx_philo, NULL);
 		philo->world = world;
 		philo->first = &world->forks[i];

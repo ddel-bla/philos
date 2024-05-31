@@ -12,19 +12,19 @@
 
 #include "philo.h"
 
-static inline bool ft_isdigit(char c)
+static inline bool	ft_isdigit(char c)
 {
 	return (c >= '0' && c <= '9');
 }
 
-static inline bool ft_isspace(char c)
+static inline bool	ft_isspace(char c)
 {
 	return ((c >= 9 && c <= 13) || c == 32);
 }
 
-static long ft_atol(const char *str)
+static long	ft_atol(const char *str)
 {
-	long	 num;
+	long	num;
 
 	num = 0;
 	while (ft_isspace(*str))
@@ -42,27 +42,26 @@ static long ft_atol(const char *str)
 	return (num);
 }
 
-int		ft_init_world(int ac, char **av, t_world *world)
+int	ft_init_world(int ac, char **av, t_world *w)
 {
-	printf("----1\n");	
+	printf("----1\n");
 	if (ac != 5 && ac != 6)
 		return (1);
-	world->philo_num = ft_atol(av[1]);
-	world->time_die = ft_atol(av[2]);
-	world->time_eat = ft_atol(av[3]) * 1000;
-	world->time_sleep = ft_atol(av[4]) * 1000;
+	w->philo_num = ft_atol(av[1]);
+	w->time_die = ft_atol(av[2]);
+	w->time_eat = ft_atol(av[3]) * 1000;
+	w->time_sleep = ft_atol(av[4]) * 1000;
 	if (av[5])
-		world->nbr_limit_meals = ft_atol(av[5]);
+		w->nbr_limit_meals = ft_atol(av[5]);
 	else
-		world->nbr_limit_meals = -1;
-	world->end = false;
-	world->philos = ft_mymalloc(sizeof(t_philo) * world->philo_num);
-	world->s_fork = sem_open("/forks", O_CREAT, 0644, (int) world->philo_num / 2);
-	world->s_ready = sem_open("/ready", O_CREAT, 0644, 0);
-	world->s_end = sem_open("/end", O_CREAT, 0644, 1);
-	world->s_write = sem_open("/write", O_CREAT, 0644, 1);
-	world->start = ft_gettime(MILI);
+		w->nbr_limit_meals = -1;
+	w->end = false;
+	w->philos = ft_mymalloc(sizeof(t_philo) * w->philo_num);
+	w->s_fork = sem_open("/forks", O_CREAT, 0644, (int) w->philo_num / 2);
+	w->s_ready = sem_open("/ready", O_CREAT, 0644, 0);
+	w->s_end = sem_open("/end", O_CREAT, 0644, 1);
+	w->s_write = sem_open("/write", O_CREAT, 0644, 1);
+	w->start = ft_gettime(MILI);
 	printf("----2\n");
 	return (0);
-
 }

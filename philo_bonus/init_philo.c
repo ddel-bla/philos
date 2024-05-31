@@ -12,7 +12,7 @@
 
 #include "philo.h"
 
-static void ft_eat(t_philo *philo)
+static void	ft_eat(t_philo *philo)
 {
 	if (sem_wait(philo->world->s_fork) == -1)
 		ft_error("sem_wait s_fork failed");
@@ -29,20 +29,19 @@ static void ft_eat(t_philo *philo)
 		ft_error("sem_post s_fork failed");
 }
 
-static void ft_sleep(t_philo *philo)
+static void	ft_sleep(t_philo *philo)
 {
 	ft_write_log(SLEEPING, philo);
 	ft_myusleep(philo->world->time_sleep, philo->world);
 }
 
-
-static void ft_thinking(t_philo *philo)
+static void	ft_thinking(t_philo *philo)
 {
-	long 	sleep;
-	long 	eat;
-	long 	think;
+	long	sleep;
+	long	eat;
+	long	think;
 	long	philo_num;
-	
+
 	ft_write_log(THINKING, philo);
 	philo_num = philo->world->philo_num;
 	if (philo_num % 2 == 0)
@@ -62,7 +61,7 @@ static void	ft_init_dinner(t_philo *philo)
 		ft_eat(philo);
 		//REVISAR FULL DECREMENTANDO MEALS
 		if (philo->full || ft_check(philo))
- 			break ;
+			break ;
 		if (ft_check(philo))
 			break ;
 		ft_sleep(philo);
@@ -72,8 +71,7 @@ static void	ft_init_dinner(t_philo *philo)
 	}
 }
 
-
-void ft_init_philo(t_world *world, int i)
+void	ft_init_philo(t_world *world, int i)
 {
 	t_philo		*philo;
 

@@ -21,7 +21,7 @@ INCLUDE	= -L -lft
 DEBUG	= -fsanitize=thread
 
 OBJS_D	= objs/
-SRCS	= init_philo.c init_threads.c init_world.c main.c \
+SRCS	= init_parse.c init_philo.c init_threads.c init_world.c main.c \
 			utils_locks.c utils_time.c syncro.c utils.c
 OBJS 	= $(addprefix $(OBJS_D), $(SRCS:.c=.o))
 

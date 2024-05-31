@@ -14,7 +14,7 @@
 
 long	ft_gettime(t_time timecode)
 {
-	struct timeval tv;
+	struct timeval	tv;
 
 	if (gettimeofday(&tv, NULL))
 		ft_error("Gettimeofday failed");
@@ -36,7 +36,7 @@ void	ft_myusleep(long usec, t_world *world)
 	while (ft_gettime(MICRO)- start < usec)
 	{
 		if (ft_finished(world))
-			break;
+			break ;
 		current = ft_gettime(MICRO) - start;
 		left = usec - current;
 		if (left > 1000)
@@ -49,10 +49,10 @@ void	ft_myusleep(long usec, t_world *world)
 
 bool	ft_finished(t_world *world)
 {
-	bool ret;
+	bool	ret;
 
 	if (sem_wait(world->s_end) == -1)
-		ft_error("sem_wait s_end failed");	
+		ft_error("sem_wait s_end failed");
 	ret = world->end;
 	if (sem_post(world->s_end) == -1)
 		ft_error("sem_post s_end failed");
@@ -63,13 +63,9 @@ bool	ft_philo_died(t_philo *philo)
 {
 	long	elapsed;
 
-	
 	if (philo->full)
 		return (0);
 	elapsed = ft_gettime(MILI) - philo->last_meal;
-	//printf("last    %ld\n", philo->last_meal);
-	//printf("last    %ld\n", ft_gettime(MILI));
-	//printf("elapsed %ld\n", elapsed);
 	if (elapsed > philo->world->time_die)
 		return (1);
 	return (0);

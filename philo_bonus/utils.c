@@ -12,13 +12,13 @@
 
 #include "philo.h"
 
-void ft_error (const char *error)
+void	ft_error(const char *error)
 {
 	printf("Error: %s\n", error);
 	exit(EXIT_FAILURE);
 }
 
-void *ft_mymalloc(size_t bytes)
+void	*ft_mymalloc(size_t bytes)
 {
 	void	*ptr;
 
@@ -28,7 +28,7 @@ void *ft_mymalloc(size_t bytes)
 	return (ptr);
 }
 
-int ft_myfork()
+int	ft_myfork(void)
 {
 	int	pid;
 
@@ -40,12 +40,12 @@ int ft_myfork()
 
 void	ft_write_log(t_life status, t_philo *philo)
 {
-	long elapsed;
+	long	elapsed;
 
 	elapsed = ft_gettime(MILI) - philo->world->start;
 	if (philo->full)
 		return ;
- 	if (sem_wait(philo->world->s_write) == -1)
+	if (sem_wait(philo->world->s_write) == -1)
 		ft_error("sem_wait s_write failed");
 	if ((FIRST_FORK == status || SECOND_FORK == status)
 		&& !ft_finished(philo->world))

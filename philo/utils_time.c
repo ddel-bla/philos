@@ -17,13 +17,11 @@ long	ft_gettime(t_time timecode)
 	struct timeval	tv;
 
 	if (gettimeofday(&tv, NULL))
-		ft_error("Gettimeofday failed");
+		printf("Gettimeofday failed\n");
 	if (MILI == timecode)
 		return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
-	else if (MICRO == timecode)
+	else 
 		return (tv.tv_sec * 1000000 + tv.tv_usec);
-	else
-		exit(123);
 }
 
 void	ft_myusleep(long usec, t_world *world)

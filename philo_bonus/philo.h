@@ -32,7 +32,7 @@ typedef enum e_time
 {
 	MILI,
 	MICRO,
-} t_time;
+}			t_time;
 
 typedef enum e_life
 {
@@ -42,11 +42,11 @@ typedef enum e_life
 	FIRST_FORK,
 	SECOND_FORK,
 	DIED,
-} t_life;
+}			t_life;
 
-typedef struct s_world t_world;
-typedef struct s_philo t_philo;
-typedef struct s_fork t_fork;
+typedef struct s_world	t_world;
+typedef struct s_philo	t_philo;
+typedef struct s_fork	t_fork;
 
 struct s_philo
 {
@@ -86,9 +86,9 @@ bool	ft_finished(t_world *world);
 bool	ft_philo_died(t_philo *philo);
 bool	ft_check(t_philo *philo);
 
-void 	ft_error (const char *error);
-void 	*ft_mymalloc(size_t bytes);
-int		ft_myfork();
+void	ft_error(const char *error);
+void	*ft_mymalloc(size_t bytes);
+int		ft_myfork(void);
 void	ft_write_log(t_life status, t_philo *philo);
 
 #endif
