@@ -20,7 +20,6 @@
 # include <stdbool.h>
 # include <stdint.h>
 # include <limits.h>
-# include <errno.h>
 # include <string.h>
 # include <errno.h>
 # include <semaphore.h>
@@ -54,7 +53,6 @@ struct s_philo
 	long		last_meal;
 	int			id;
 	int			pid;
-	bool		full;
 	t_world		*world;
 };
 
@@ -80,11 +78,15 @@ void	ft_init_philo(t_world *world, int i);
 
 int		ft_init_world(int ac, char **av, t_world *world);
 
-long	ft_gettime(t_time timecode);
-void	ft_myusleep(long usec, t_world *world);
+bool	ft_check(t_philo *philo);
 bool	ft_finished(t_world *world);
 bool	ft_philo_died(t_philo *philo);
+void	ft_scan_world(t_world *world);
+
+long	ft_gettime(t_time timecode);
+void	ft_myusleep(long usec, t_world *world);
 bool	ft_check(t_philo *philo);
+void	ft_delaying(t_philo *philo, int init);
 
 void	ft_error(const char *error);
 void	*ft_mymalloc(size_t bytes);

@@ -21,6 +21,8 @@ INCLUDE	= -L -lft
 OBJS_D	= objs/
 SRCS	= init_philo.c init_world.c main.c \
 			utils_time.c utils.c
+SRCS	=  init_philo.c init_world.c main.c \
+			utils_time.c syncro.c utils.c
 OBJS 	= $(addprefix $(OBJS_D), $(SRCS:.c=.o))
 
 all: $(OBJS_D) $(NAME)

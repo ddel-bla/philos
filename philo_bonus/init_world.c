@@ -44,7 +44,6 @@ static long	ft_atol(const char *str)
 
 int	ft_init_world(int ac, char **av, t_world *w)
 {
-	printf("----1\n");
 	if (ac != 5 && ac != 6)
 		return (1);
 	w->philo_num = ft_atol(av[1]);
@@ -57,11 +56,10 @@ int	ft_init_world(int ac, char **av, t_world *w)
 		w->nbr_limit_meals = -1;
 	w->end = false;
 	w->philos = ft_mymalloc(sizeof(t_philo) * w->philo_num);
-	w->s_fork = sem_open("/forks", O_CREAT, 0644, (int) w->philo_num / 2);
+	w->s_fork = sem_open("/forks", O_CREAT, 0644, w->philo_num);
 	w->s_ready = sem_open("/ready", O_CREAT, 0644, 0);
 	w->s_end = sem_open("/end", O_CREAT, 0644, 1);
 	w->s_write = sem_open("/write", O_CREAT, 0644, 1);
 	w->start = ft_gettime(MILI);
-	printf("----2\n");
 	return (0);
 }

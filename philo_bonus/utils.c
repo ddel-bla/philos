@@ -43,7 +43,7 @@ void	ft_write_log(t_life status, t_philo *philo)
 	long	elapsed;
 
 	elapsed = ft_gettime(MILI) - philo->world->start;
-	if (philo->full)
+	if (!philo->meals)
 		return ;
 	if (sem_wait(philo->world->s_write) == -1)
 		ft_error("sem_wait s_write failed");

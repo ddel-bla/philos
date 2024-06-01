@@ -47,44 +47,19 @@ void	ft_myusleep(long usec, t_world *world)
 	}
 }
 
-bool	ft_finished(t_world *world)
+
+void	ft_delaying(t_philo *philo, int init)
 {
-	bool	ret;
+	long	sleep;
+	long	eat;
+	long	think;
 
-	if (sem_wait(world->s_end) == -1)
-		ft_error("sem_wait s_end failed");
-	ret = world->end;
-	if (sem_post(world->s_end) == -1)
-		ft_error("sem_post s_end failed");
-	return (ret);
-}
-
-bool	ft_philo_died(t_philo *philo)
-{
-	long	elapsed;
-
-	if (philo->full)
-		return (0);
-	elapsed = ft_gettime(MILI) - philo->last_meal;
-	if (elapsed > philo->world->time_die)
-		return (1);
-	return (0);
-}
-
-bool	ft_check(t_philo *philo)
-{
-	//REVISAR HACIENDO UN SOLO RETURN
-	if (ft_finished(philo->world))
-		return (1);
-	if (ft_philo_died(philo))
-	{
-		ft_write_log(DIED, philo);
-		if (sem_wait(philo->world->s_end) == -1)
-			ft_error("sem_wait s_end failed");
-		philo->world->end = true;
-		if (sem_post(philo->world->s_end) == -1)
-			ft_error("sem_post s_end failed");
-		return (1);
-	}
-	return (0);
+	sleep = philo->world->time_sleep;
+	eat = philo->world->time_eat;
+	think = eat * 1.75 - sleep;
+	if (init)
+		think /= 2;
+	if (think < 0)
+		return ;
+	ft_myusleep(think, philo->world);
 }
