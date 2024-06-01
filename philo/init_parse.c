@@ -34,45 +34,45 @@ static long	ft_atol(const char *str)
 	else if (*str == '-')
 	{
 		printf("Only positive numbers please.\n");
-		return (NULL);
+		return (-1);
 	}
 	if (!ft_isdigit(*str))
 	{
 		printf("Character found. Please check input\n");
-		return (NULL);
+		return (-1);
 	}
 	while (ft_isdigit(*str))
 		num = (num * 10) + *str++ - '0';
 	if (num > INT_MAX)
 	{
 		printf("CINT_MAX is the max input\n");
-		return (NULL);
+		return (-1);
 	}
 	return (num);
 }
 
-int	ft_parse(int ac, int **av, int p[5])
+int	ft_parse(int ac, char **av, long p[5])
 {
 	if (ac != 5 && ac != 6)
 		return (1);
-	if (ft_atol(av[1]) == NULL || ft_atol(av[2]) == NULL)
+	if (ft_atol(av[1]) == -1 || ft_atol(av[2]) == -1)
 		return (1);
 	p[0] = ft_atol(av[1]);
 	p[1] = ft_atol(av[2]);
-	if (ft_atol(av[3]) == NULL || ft_atol(av[4]) == NULL)
+	if (ft_atol(av[3]) == -1 || ft_atol(av[4]) == -1)
 		return (1);
 	p[2] = ft_atol(av[3]) * 1000;
 	p[3] = ft_atol(av[4]) * 1000;
 	if (av[5])
 	{
 		p[4] = ft_atol(av[5]);
-		if (p[4] == 0)
+		if (p[4] <= 0)
 		{
 			printf("Check number of meals please.\n");
 			return (1);
 		}
-		else
-			p[4] = -1;
 	}
+	else
+		p[4] = -1;
 	return (0);
 }

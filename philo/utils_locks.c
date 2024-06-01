@@ -47,7 +47,7 @@ long	ft_get_l(t_mtx *mutex, long *value)
 }
 
 void	ft_add_l(t_mtx *mutex, long *value)
-{	
+{
 	pthread_mutex_lock(mutex);
 	(*value)++;
 	pthread_mutex_unlock(mutex);

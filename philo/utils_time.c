@@ -20,7 +20,7 @@ long	ft_gettime(t_time timecode)
 		printf("Gettimeofday failed\n");
 	if (MILI == timecode)
 		return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
-	else 
+	else
 		return (tv.tv_sec * 1000000 + tv.tv_usec);
 }
 
