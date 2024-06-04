@@ -19,10 +19,8 @@ NORM 	= norminette
 INCLUDE	= -L -lft 
 
 OBJS_D	= objs/
-SRCS	= init_philo.c init_world.c main.c \
-			utils_time.c utils.c
 SRCS	=  init_philo.c init_world.c main.c \
-			utils_time.c syncro.c utils.c
+			sem.c syncro.c utils_time.c utils.c
 OBJS 	= $(addprefix $(OBJS_D), $(SRCS:.c=.o))
 
 all: $(OBJS_D) $(NAME)
@@ -48,7 +46,7 @@ norm :
 
 valgrind_race: re
 	@echo "\033[1;33m\nChecking for race conditions with valgrind...\033[0m"
-	valgrind --tool=helgrind ./$(NAME) 5 50000 200 200 5
+	valgrind --tool=helgrind -s ./$(NAME) 5 50000 200 200 5
 
 valgrind_leaks: re
 	@echo "\033[1;33m\n Valrind Memory leaks with valgrind...\033[0m"

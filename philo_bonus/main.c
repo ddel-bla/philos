@@ -44,16 +44,10 @@ int	main(int ac, char **av)
 		ft_error("Check number of meals please.");
 	i = -1;
 	while (++i < world.philo_num)
-	{
-//		printf("Xa %i\n", i);
 		ft_init_philo(&world, i);
-	}
 	while (--i > -1)
-	{
-//		printf("Xb %i\n", i);
 		if (sem_post(world.s_ready) == -1)
 			ft_error("sem_post failed");
-	}
 	ft_scan_world(&world);
 	while (++i < world.philo_num)
 		waitpid(world.philos[i].pid, NULL, 0);

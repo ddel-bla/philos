@@ -56,10 +56,10 @@ int	ft_init_world(int ac, char **av, t_world *w)
 		w->nbr_limit_meals = -1;
 	w->end = false;
 	w->philos = ft_mymalloc(sizeof(t_philo) * w->philo_num);
-	w->s_fork = sem_open("/forks", O_CREAT, 0644, w->philo_num);
-	w->s_ready = sem_open("/ready", O_CREAT, 0644, 0);
-	w->s_end = sem_open("/end", O_CREAT, 0644, 1);
-	w->s_write = sem_open("/write", O_CREAT, 0644, 1);
+	w->s_fork = ft_sem_open("/forks", w->philo_num);
+	w->s_ready = ft_sem_open("/ready", 0);
+	w->s_end = ft_sem_open("/end", 1);
+	w->s_write = ft_sem_open("/write", 1);
 	w->start = ft_gettime(MILI);
 	return (0);
 }

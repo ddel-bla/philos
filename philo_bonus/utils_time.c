@@ -47,7 +47,6 @@ void	ft_myusleep(long usec, t_world *world)
 	}
 }
 
-
 void	ft_delaying(t_philo *philo, int init)
 {
 	long	sleep;

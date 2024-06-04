@@ -77,6 +77,8 @@ void	ft_init_philo(t_world *world, int i);
 
 int		ft_init_world(int ac, char **av, t_world *world);
 
+sem_t	*ft_sem_open(char *str, long num);
+
 bool	ft_check(t_philo *philo);
 bool	ft_finished(t_world *world);
 bool	ft_philo_died(t_philo *philo);

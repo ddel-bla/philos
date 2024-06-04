@@ -29,6 +29,7 @@ bool	ft_check(t_philo *philo)
 	}
 	return (0);
 }
+
 bool	ft_finished(t_world *world)
 {
 	bool	ret;
@@ -52,6 +53,7 @@ bool	ft_philo_died(t_philo *philo)
 		return (1);
 	return (0);
 }
+
 void	ft_scan_world(t_world *world)
 {
 	int			i;
@@ -62,8 +64,6 @@ void	ft_scan_world(t_world *world)
 		i = -1;
 		while (++i < world->philo_num && !ft_finished(world))
 		{
-			//printf("!ft_finished(world))            %i\n", !ft_finished(world));
-			//printf("ft_philo_died(&world->philos[i] %i\n", ft_philo_died(&world->philos[i]));
 			if (ft_philo_died(&world->philos[i]))
 			{
 				world->end = true;
