@@ -45,12 +45,12 @@ int	main(int ac, char **av)
 	i = -1;
 	while (++i < world.philo_num)
 	{
-//		printf("XX %i\n", i);
+//		printf("Xa %i\n", i);
 		ft_init_philo(&world, i);
 	}
 	while (--i > -1)
 	{
-//		printf("XX %i\n", i);
+//		printf("Xb %i\n", i);
 		if (sem_post(world.s_ready) == -1)
 			ft_error("sem_post failed");
 	}

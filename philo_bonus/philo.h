@@ -59,7 +59,6 @@ struct s_philo
 struct	s_world	
 {
 	long		philo_num;
-	long		philo_threads;
 	long		time_die;
 	long		time_eat;
 	long		time_sleep;

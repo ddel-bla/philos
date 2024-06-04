@@ -48,8 +48,10 @@ static void	ft_thinking(t_philo *philo)
 
 static void	ft_init_dinner(t_philo *philo)
 {
+	printf("A pid %i\n", philo->pid);
 	while (!ft_check(philo))
 	{
+		printf("B pid %i\n", philo->pid);
 		ft_eat(philo);
 		if (philo->meals == 0 || ft_check(philo))
 		{
@@ -77,18 +79,22 @@ void	ft_init_philo(t_world *world, int i)
 
 	philo = world->philos + i;
 	philo->pid = ft_myfork();
+	printf("Init X pid %i\n", philo->pid);
 	if (philo->pid == 0)
 	{
+		printf("Init 0 pid %i\n", philo->pid);
 		if (sem_wait(philo->world->s_ready) == -1)
 			ft_error("sem_wait s_ready failed");
+		printf("Init 1 pid %i\n", philo->pid);
 		if (philo->id % 2 == 0)
 			ft_delaying(philo, 1);
 		philo->id = i + 1;
 		philo->meals = world->nbr_limit_meals;
 		philo->world = world;
 		philo->last_meal = ft_gettime(MILI);
+		printf("Init 2 pid %i\n", philo->pid);
 		ft_init_dinner(philo);
-		printf("4 pid %i\n", philo->pid);
+		printf("Init 3 pid %i\n", philo->pid);		
 		exit(0);
 	}
 }

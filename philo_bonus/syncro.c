@@ -57,18 +57,13 @@ void	ft_scan_world(t_world *world)
 	int			i;
 
 	i = 1;
-	while (i == 1)
-	{
-		//pthread_mutex_lock(&world->mtx_world);
-		if (world->philo_num == world->philo_threads)
-			i = -1;
-		//pthread_mutex_unlock(&world->mtx_world);
-	}
 	while (!ft_finished(world))
 	{
 		i = -1;
 		while (++i < world->philo_num && !ft_finished(world))
 		{
+			//printf("!ft_finished(world))            %i\n", !ft_finished(world));
+			//printf("ft_philo_died(&world->philos[i] %i\n", ft_philo_died(&world->philos[i]));
 			if (ft_philo_died(&world->philos[i]))
 			{
 				world->end = true;
