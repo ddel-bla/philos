@@ -93,7 +93,7 @@ void	ft_set_b(t_mtx *mutex, bool *dst, bool value);
 bool	ft_get_b(t_mtx *mutex, bool *value);
 void	ft_set_l(t_mtx *mutex, long *dst, long value);
 long	ft_get_l(t_mtx *mutex, long *value);
-void	ft_add_l(t_mtx *mutex, long *value);
+void	ft_add_l(t_mtx *mutex, long *value, int direction);
 
 void	ft_wait_all_threads(t_world *world);
 bool	ft_finished(t_world *world);
