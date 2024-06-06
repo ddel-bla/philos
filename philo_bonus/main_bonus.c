@@ -41,10 +41,7 @@ int	main(int ac, char **av)
 	ft_init_world(av, &world);
 	i = -1;
 	while (++i < world.philo_num)
-	{
 		ft_init_philo(&world, i);
-		//usleep(50);
-	}
 	while (--i > -1)
 		ft_sem_post(world.s_ready);
 	pthread_create(&monitor, NULL, ft_scan_f_alive, &world);
