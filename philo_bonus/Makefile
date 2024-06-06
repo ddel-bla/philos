@@ -1,15 +1,15 @@
 # **************************************************************************** #
-#																			  #
-#														 :::	  ::::::::	#
-#	Makefile										   :+:	  :+:	:+:	#
-#													 +:+ +:+		 +:+	  #
-#	By: ddel-bla <ddel-bla@student.42madrid.com	+#+  +:+	   +#+		 #
-#												 +#+#+#+#+#+   +#+			#
-#	Created: 2024/05/10 20:24:57 by ddel-bla		  #+#	#+#			  #
-#	Updated: 2024/05/20 08:26:53 by ddel-bla		 ###   ########.fr		#
-#																			  #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ddel-bla <ddel-bla@student.42madrid.com    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/06/06 12:41:03 by ddel-bla          #+#    #+#              #
+#    Updated: 2024/06/06 17:23:18 by ddel-bla         ###   ########.fr        #
+#                                                                              #
 # **************************************************************************** #
- 
+
 NAME	= philo_bonus
 CC		= gcc
 RM		= rm -rf
@@ -19,8 +19,10 @@ NORM 	= norminette
 INCLUDE	= -L -lft 
 
 OBJS_D	= objs/
-SRCS	=  init_philo.c init_world.c main.c \
-			sem.c syncro.c utils_time.c utils.c
+SRCS	=  dinner_actions_bonus.c init_philo_bonus.c init_world_bonus.c \
+		main_bonus.c utils_scan_bonus.c utils_err_bonus.c utils_sem_bonus.c \
+		utils_time_bonus.c
+
 OBJS 	= $(addprefix $(OBJS_D), $(SRCS:.c=.o))
 
 all: $(OBJS_D) $(NAME)
@@ -46,11 +48,11 @@ norm :
 
 valgrind_race: re
 	@echo "\033[1;33m\nChecking for race conditions with valgrind...\033[0m"
-	valgrind --tool=helgrind -s ./$(NAME) 5 50000 200 200 5
+	valgrind --tool=helgrind -s ./$(NAME) 10 1000 200 200 2
 
 valgrind_leaks: re
 	@echo "\033[1;33m\n Valrind Memory leaks with valgrind...\033[0m"
-	valgrind --leak-check=full ./$(NAME) 5 50000 200 200 5
+	valgrind --leak-check=full ./$(NAME) 10 1000 200 200 2
 
 re: fclean all
 

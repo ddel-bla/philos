@@ -10,23 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
 long	ft_gettime(t_time timecode)
 {
 	struct timeval	tv;
 
 	if (gettimeofday(&tv, NULL))
-		ft_error("Gettimeofday failed");
+		ft_error(NULL, "Gettimeofday failed", 23);
 	if (MILI == timecode)
 		return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
-	else if (MICRO == timecode)
-		return (tv.tv_sec * 1000000 + tv.tv_usec);
 	else
-		exit(123);
+		return (tv.tv_sec * 1000000 + tv.tv_usec);
 }
 
-void	ft_myusleep(long usec, t_world *world)
+void	ft_myusleep(long usec)
 {
 	long	start;
 	long	current;
@@ -35,8 +33,6 @@ void	ft_myusleep(long usec, t_world *world)
 	start = ft_gettime(MICRO);
 	while (ft_gettime(MICRO)- start < usec)
 	{
-		if (ft_finished(world))
-			break ;
 		current = ft_gettime(MICRO) - start;
 		left = usec - current;
 		if (left > 1000)
@@ -60,5 +56,5 @@ void	ft_delaying(t_philo *philo, int init)
 		think /= 2;
 	if (think < 0)
 		return ;
-	ft_myusleep(think, philo->world);
+	ft_myusleep(think);
 }

@@ -10,12 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
-void	ft_error(const char *error)
+void	ft_error(t_world *world, const char *error, int numerr)
 {
 	printf("Error: %s\n", error);
-	exit(EXIT_FAILURE);
+	if (world)
+		ft_exit(world);
+	exit(numerr);
 }
 
 void	*ft_mymalloc(size_t bytes)
@@ -24,7 +26,7 @@ void	*ft_mymalloc(size_t bytes)
 
 	ptr = malloc(bytes);
 	if (!ptr)
-		ft_error("Malloc issues");
+		ft_error(NULL, "Malloc issues", 11);
 	return (ptr);
 }
 
@@ -34,30 +36,6 @@ int	ft_myfork(void)
 
 	pid = fork();
 	if (pid < 0)
-		ft_error("Fork failed");
+		ft_error(NULL, "t_world *world, Fork failed", 22);
 	return (pid);
-}
-
-void	ft_write_log(t_life status, t_philo *philo)
-{
-	long	elapsed;
-
-	elapsed = ft_gettime(MILI) - philo->world->start;
-	if (!philo->meals)
-		return ;
-	if (sem_wait(philo->world->s_write) == -1)
-		ft_error("sem_wait s_write failed");
-	if ((FIRST_FORK == status || SECOND_FORK == status)
-		&& !ft_finished(philo->world))
-		printf("%-6ld %d has taken a fork\n", elapsed, philo->id);
-	else if (EATING == status && !ft_finished(philo->world))
-		printf("%-6ld %d is eating\n", elapsed, philo->id);
-	else if (SLEEPING == status && !ft_finished(philo->world))
-		printf("%-6ld %d is sleeping\n", elapsed, philo->id);
-	else if (THINKING == status && !ft_finished(philo->world))
-		printf("%-6ld %d is thinking\n", elapsed, philo->id);
-	else if (DIED == status)
-		printf("%-6ld %d died\n", elapsed, philo->id);
-	if (sem_post(philo->world->s_write) == -1)
-		ft_error("sem_post s_write failed");
 }
