@@ -6,7 +6,7 @@
 /*   By: ddel-bla <ddel-bla@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 12:13:39 by ddel-bla          #+#    #+#             */
-/*   Updated: 2024/06/06 17:27:33 by ddel-bla         ###   ########.fr       */
+/*   Updated: 2024/06/06 19:47:47 by ddel-bla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	ft_init_philo(t_world *world, int i)
 	philo = world->philos + i;
 	philo->id = i + 1;
 	philo->meals = world->nbr_limit_meals;
+	philo->world = world;	
 	philo->die_time = world->time_die;
 	philo->next_meal = world->start + philo->die_time;
 	philo->pid = ft_myfork();
