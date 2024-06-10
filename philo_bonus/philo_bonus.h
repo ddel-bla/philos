@@ -24,11 +24,6 @@
 # include <sys/wait.h>
 # include <signal.h>
 # include <pthread.h>
-//
-# include <string.h>
-# include <errno.h>
-# include <sys/stat.h>
-# include <stdint.h>
 
 typedef enum e_time
 {
@@ -98,6 +93,9 @@ void	ft_sem_unlink(char *sem);
 
 void	*ft_scan_f_die(void *arg);
 void	*ft_scan_f_alive(void *arg);
+
+long	ft_atol(const char *str);
+char	*ft_itoa(long n);
 
 long	ft_gettime(t_time timecode);
 void	ft_myusleep(long usec);

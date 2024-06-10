@@ -6,7 +6,7 @@
 #    By: ddel-bla <ddel-bla@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/06 12:41:03 by ddel-bla          #+#    #+#              #
-#    Updated: 2024/06/06 17:23:18 by ddel-bla         ###   ########.fr        #
+#    Updated: 2024/06/10 16:26:05 by ddel-bla         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,8 @@ NORM 	= norminette
 INCLUDE	= -L -lft 
 
 OBJS_D	= objs/
-SRCS	=  dinner_actions_bonus.c init_philo_bonus.c init_world_bonus.c \
-		main_bonus.c utils_scan_bonus.c utils_err_bonus.c utils_sem_bonus.c \
+SRCS	=  main_bonus.c src_actions_bonus.c src_philo_bonus.c src_world_bonus.c \
+		utils_scan_bonus.c utils_err_bonus.c utils_sem_bonus.c utils_strings.c \
 		utils_time_bonus.c
 
 OBJS 	= $(addprefix $(OBJS_D), $(SRCS:.c=.o))
