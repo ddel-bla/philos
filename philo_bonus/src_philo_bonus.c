@@ -6,7 +6,7 @@
 /*   By: ddel-bla <ddel-bla@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 12:13:39 by ddel-bla          #+#    #+#             */
-/*   Updated: 2024/06/10 18:42:58 by ddel-bla         ###   ########.fr       */
+/*   Updated: 2024/06/10 19:10:28 by ddel-bla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,5 @@ void	ft_one_philo(t_world *world, int i)
 		ft_write_log(FORK, philo);
 		while (1)
 			ft_myusleep(50);
-
 	}
 }

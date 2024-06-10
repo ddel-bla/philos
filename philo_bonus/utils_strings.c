@@ -6,12 +6,11 @@
 /*   By: ddel-bla <ddel-bla@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:27:16 by ddel-bla          #+#    #+#             */
-/*   Updated: 2024/06/10 16:28:52 by ddel-bla         ###   ########.fr       */
+/*   Updated: 2024/06/10 19:11:03 by ddel-bla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
-
 
 static inline bool	ft_isdigit(char c)
 {
@@ -43,7 +42,7 @@ long	ft_atol(const char *str)
 	return (num);
 }
 
-static size_t   ft_int_len(long i)
+static size_t	ft_int_len(long i)
 {
 	size_t	len;
 
@@ -61,7 +60,7 @@ static size_t   ft_int_len(long i)
 	return (len);
 }
 
-char    *ft_itoa(long n)
+char	*ft_itoa(long n)
 {
 	char	*res;
 	size_t	len;

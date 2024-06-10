@@ -6,7 +6,7 @@
 /*   By: ddel-bla <ddel-bla@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 12:30:51 by ddel-bla          #+#    #+#             */
-/*   Updated: 2024/06/10 17:45:29 by ddel-bla         ###   ########.fr       */
+/*   Updated: 2024/06/10 19:07:19 by ddel-bla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,25 @@
 
 void	ft_eat(t_philo *philo)
 {
+	ft_sem_wait(philo->s_philo);
+	ft_sem_post(philo->s_philo);
 	ft_sem_wait(philo->world->s_fork);
 	ft_write_log(FORK, philo);
+	ft_sem_wait(philo->s_philo);
+	ft_sem_post(philo->s_philo);
 	ft_sem_wait(philo->world->s_fork);
 	ft_write_log(FORK, philo);
+	ft_sem_wait(philo->s_philo);
+	ft_sem_post(philo->s_philo);
 	ft_write_log(EATING, philo);
 	if (philo->meals != -1)
 		philo->meals--;
+	ft_sem_wait(philo->s_philo);
+	ft_sem_post(philo->s_philo);
 	philo->last_meal = ft_gettime(MILI);
 	philo->next_meal = philo->last_meal + philo->die_time;
+	ft_sem_wait(philo->s_philo);
+	ft_sem_post(philo->s_philo);
 	ft_myusleep(philo->world->time_eat);
 	ft_sem_post(philo->world->s_fork);
 	ft_sem_post(philo->world->s_fork);

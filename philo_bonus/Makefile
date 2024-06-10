@@ -6,7 +6,7 @@
 #    By: ddel-bla <ddel-bla@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/06 12:41:03 by ddel-bla          #+#    #+#              #
-#    Updated: 2024/06/10 16:26:05 by ddel-bla         ###   ########.fr        #
+#    Updated: 2024/06/10 19:08:22 by ddel-bla         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,7 @@ norm :
 
 valgrind_race: re
 	@echo "\033[1;33m\nChecking for race conditions with valgrind...\033[0m"
-	valgrind --tool=helgrind -s ./$(NAME) 10 1000 200 200 2
+	valgrind --tool=helgrind -s ./$(NAME) 3 1000 200 200 20
 
 valgrind_leaks: re
 	@echo "\033[1;33m\n Valrind Memory leaks with valgrind...\033[0m"
