@@ -52,6 +52,8 @@ struct s_philo
 	long		die_time;
 	int			id;
 	int			pid;
+	int			impar;
+	sem_t		*s_philo;
 	t_world		*world;
 };
 
@@ -76,6 +78,7 @@ void	ft_thinking(t_philo *philo);
 void	ft_write_log(t_life status, t_philo *philo);
 
 void	ft_init_philo(t_world *world, int i);
+void	ft_one_philo(t_world *world, int i);
 
 void	ft_init_world(char **av, t_world *world);
 

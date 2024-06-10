@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dinner_actions_bonus.c                             :+:      :+:    :+:   */
+/*   src_actions_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ddel-bla <ddel-bla@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 12:30:51 by ddel-bla          #+#    #+#             */
-/*   Updated: 2024/06/06 12:37:07 by ddel-bla         ###   ########.fr       */
+/*   Updated: 2024/06/10 17:45:29 by ddel-bla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_sleep(t_philo *philo)
 void	ft_thinking(t_philo *philo)
 {
 	ft_write_log(THINKING, philo);
-	if (!philo->world->philo_num % 2 == 0)
+	if (philo->impar)
 		ft_delaying(philo, 0);
 }
 
