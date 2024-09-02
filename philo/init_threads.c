@@ -19,9 +19,11 @@ static void	ft_eat(t_philo *philo)
 	pthread_mutex_lock(&philo->second->mtx_fork);
 	ft_write_log(SECOND_FORK, philo);
 	ft_set_l(&philo->mtx_philo, &philo->last_meal, ft_gettime(MILI));
+	philo->meals++;
 	ft_write_log(EATING, philo);
-	ft_add_l(&philo->mtx_philo, &philo->meals, -1);
 	ft_myusleep(philo->world->time_eat, philo->world);
+	if (philo->world->nbr_limit_meals == philo->meals)
+		ft_set_b(&philo->mtx_philo, &philo->full, true);
 	pthread_mutex_unlock(&philo->first->mtx_fork);
 	pthread_mutex_unlock(&philo->second->mtx_fork);
 }
@@ -50,12 +52,12 @@ void	*ft_init_threads(void *data)
 	philo = (t_philo *) data;
 	ft_wait_all_threads(philo->world);
 	philo->last_meal = ft_gettime(MILI);
-	ft_add_l(&philo->world->mtx_world, &philo->world->philo_threads, 1);
+	ft_add_l(&philo->world->mtx_world, &philo->world->philo_threads);
 	if (philo->id % 2 == 0)
 		ft_delaying(philo, 1);
 	while (!ft_finished(philo->world))
 	{
-		if (!ft_get_l(&philo->mtx_philo, &philo->meals) != 0)
+		if (ft_get_b(&philo->mtx_philo, &philo->full))
 			break ;
 		ft_eat(philo);
 		ft_sleep(philo);
@@ -71,7 +73,7 @@ void	*ft_one_thread(void *data)
 	philo = (t_philo *) data;
 	ft_set_l(&philo->mtx_philo, &philo->last_meal, ft_gettime(MILI));
 	ft_wait_all_threads(philo->world);
-	ft_add_l(&philo->world->mtx_world, &philo->world->philo_threads, 1);
+	ft_add_l(&philo->world->mtx_world, &philo->world->philo_threads);
 	ft_write_log(FIRST_FORK, philo);
 	while (!ft_finished(philo->world))
 		;

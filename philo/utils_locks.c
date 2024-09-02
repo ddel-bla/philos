@@ -46,12 +46,9 @@ long	ft_get_l(t_mtx *mutex, long *value)
 	return (ret);
 }
 
-void	ft_add_l(t_mtx *mutex, long *value, int direction)
-{
+void	ft_add_l(t_mtx *mutex, long *value)
+{	
 	pthread_mutex_lock(mutex);
-	if (direction)
-		(*value)++;
-	else
-		(*value)--;
+	(*value)++;
 	pthread_mutex_unlock(mutex);
 }

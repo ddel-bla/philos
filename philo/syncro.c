@@ -16,7 +16,7 @@ static bool	ft_philo_died(t_philo *philo)
 {
 	long	elapsed;
 
-	if (!ft_get_l(&philo->mtx_philo, &philo->meals))
+	if (ft_get_b(&philo->mtx_philo, &philo->full))
 		return (0);
 	elapsed = ft_gettime(MILI) - ft_get_l(&philo->mtx_philo, &philo->last_meal);
 	if (elapsed > philo->world->time_die)

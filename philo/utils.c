@@ -12,13 +12,19 @@
 
 #include "philo.h"
 
+void	ft_error(const char *error)
+{
+	printf("Error: %s\n", error);
+	exit(EXIT_FAILURE);
+}
+
 void	*ft_mymalloc(size_t bytes)
 {
 	void	*ptr;
 
 	ptr = malloc(bytes);
 	if (!ptr)
-		return (NULL);
+		ft_error("Malloc issues");
 	return (ptr);
 }
 
@@ -27,7 +33,7 @@ void	ft_write_log(t_life status, t_philo *philo)
 	long	elapsed;
 
 	elapsed = ft_gettime(MILI) - philo->world->start;
-	if (!ft_get_l(&philo->mtx_philo, &philo->meals))
+	if (ft_get_b(&philo->mtx_philo, &philo->full))
 		return ;
 	pthread_mutex_lock(&philo->world->mtx_print);
 	if ((FIRST_FORK == status || SECOND_FORK == status)

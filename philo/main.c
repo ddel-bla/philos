@@ -25,33 +25,23 @@ static void	ft_exit(t_world *world)
 	free(world->philos);
 }
 
-static void	ft_init_dinner(t_world *world)
-{
-	int			i;
-
-	if (world->philo_num == 1)
-		pthread_create(&world->philos[0].thread_id, NULL,
-			ft_one_thread, &world->philos[0]);
-	else
-	{
-		i = -1;
-		while (++i < world->philo_num)
-			pthread_create(&world->philos[i].thread_id, NULL,
-				ft_init_threads, &world->philos[i]);
-	}
-}
-
 int	main(int ac, char **av)
 {
 	t_world		world;
 	int			i;
-	long		p[5];
 
-	if (ft_parse(ac, av, p))
-		return (printf("Please enter ./philo XXX XXX XXX [X]\n"), 1);
-	ft_init_world(&world, p);
+	ft_init_world(ac, av, &world);
 	ft_init_philos(&world);
-	ft_init_dinner(&world);
+	if (world.philo_num == 1)
+		pthread_create(&world.philos[0].thread_id, NULL,
+			ft_one_thread, &world.philos[0]);
+	else
+	{
+		i = -1;
+		while (++i < world.philo_num)
+			pthread_create(&world.philos[i].thread_id, NULL,
+				ft_init_threads, &world.philos[i]);
+	}
 	pthread_create(&world.thread_id, NULL, ft_scan_world, &world);
 	world.start = ft_gettime(MILI);
 	ft_set_b(&world.mtx_world, &world.all_ready, true);

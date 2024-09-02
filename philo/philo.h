@@ -55,6 +55,7 @@ struct s_philo
 	long		meals;
 	long		last_meal;
 	int			id;
+	bool		full;
 	t_fork		*first;
 	t_fork		*second;
 	pthread_t	thread_id;
@@ -80,20 +81,18 @@ struct	s_world
 	t_philo		*philos;
 };
 
-int		ft_parse(int ac, char **av, long p[5]);
-
 void	ft_init_philos(t_world *world);
 
 void	*ft_init_threads(void *data);
 void	*ft_one_thread(void *data);
 
-void	ft_init_world(t_world *world, long p[5]);
+void	ft_init_world(int ac, char **av, t_world *world);
 
 void	ft_set_b(t_mtx *mutex, bool *dst, bool value);
 bool	ft_get_b(t_mtx *mutex, bool *value);
 void	ft_set_l(t_mtx *mutex, long *dst, long value);
 long	ft_get_l(t_mtx *mutex, long *value);
-void	ft_add_l(t_mtx *mutex, long *value, int direction);
+void	ft_add_l(t_mtx *mutex, long *value);
 
 void	ft_wait_all_threads(t_world *world);
 bool	ft_finished(t_world *world);
@@ -103,6 +102,7 @@ long	ft_gettime(t_time timecode);
 void	ft_myusleep(long usec, t_world *world);
 void	ft_delaying(t_philo *philo, int init);
 
+void	ft_error(const char *error);
 void	*ft_mymalloc(size_t bytes);
 void	ft_write_log(t_life status, t_philo *philo);
 
