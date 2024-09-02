@@ -12,19 +12,13 @@
 
 #include "philo.h"
 
-void	ft_error(const char *error)
-{
-	printf("Error: %s\n", error);
-	exit(EXIT_FAILURE);
-}
-
 void	*ft_mymalloc(size_t bytes)
 {
 	void	*ptr;
 
 	ptr = malloc(bytes);
 	if (!ptr)
-		ft_error("Malloc issues");
+		return (NULL);
 	return (ptr);
 }
 
