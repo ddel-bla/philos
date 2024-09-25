@@ -38,7 +38,7 @@ void	ft_myusleep(long usec, t_world *world)
 		current = ft_gettime(MICRO) - start;
 		left = usec - current;
 		if (left > 1000)
-			usleep(left / 2);
+			usleep(200);
 		else
 			while (ft_gettime(MICRO) - start < usec)
 				;
